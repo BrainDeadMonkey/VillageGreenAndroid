@@ -25,17 +25,31 @@ public class JsonReceiver {
         return call;
     }
 
-//    public static Call<List<Client>> createUserCall() {
-//
-//        Retrofit user = new Retrofit.Builder()
-//                .baseUrl("https://dev.amorce.org/vboulard/VillageGreen/index.php/Api/getAllProd/")
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .build();
-//
-//        JsonPlaceHolderAPI jsonPlaceHolderApi = user.create(JsonPlaceHolderAPI.class);
-//
-//        Call<List<Client>> call = jsonPlaceHolderApi.getUser();
-//
-//        return call;
-//    }
+    public static Call<List<Produit>> createProdCall(int id) {
+
+        Retrofit user = new Retrofit.Builder()
+                .baseUrl("https://dev.amorce.org/vboulard/VillageGreen/index.php/Api/getProdByIdRub/"+ id + "/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        JsonPlaceHolderAPI jsonPlaceHolderApi = user.create(JsonPlaceHolderAPI.class);
+
+        Call<List<Produit>> call2 = jsonPlaceHolderApi.getProdByIdRub();
+
+        return call2;
+    }
+
+    public static Call<Produit> createProdByIdCall(int id) {
+
+        Retrofit user = new Retrofit.Builder()
+                .baseUrl("https://dev.amorce.org/vboulard/VillageGreen/index.php/Api/getProdById/"+ id + "/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        JsonPlaceHolderAPI jsonPlaceHolderApi = user.create(JsonPlaceHolderAPI.class);
+
+        Call<Produit> call3 = jsonPlaceHolderApi.getProdById();
+
+        return call3;
+    }
 }

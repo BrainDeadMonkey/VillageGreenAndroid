@@ -24,6 +24,7 @@ public class ProduitsAdapter extends RecyclerView.Adapter<ProduitsAdapter.MyView
     private Context mContext;
     private List<Produit> produitList;
 
+
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView ref, lib, prixV;
         public ImageView thumbnail, overflow;

@@ -11,6 +11,8 @@ import retrofit2.http.GET;
 public interface JsonPlaceHolderAPI {
     @GET("getAllProd")
     Call<List<Produit>> getProd();
-//    @GET("getUser")
-//    Call<List<Client>> getUser();
+    @GET("getProdByIdRub")
+    Call<List<Produit>> getProdByIdRub();
+    @GET("getProdById")
+    Call<Produit> getProdById();
 }

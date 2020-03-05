@@ -16,10 +16,12 @@ import android.util.TypedValue;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.GridView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.example.villagegreen.model.Produit;
+import com.example.villagegreen.ui.categ.CategActivity;
 import com.example.villagegreen.ui.login.LoginActivity;
 import com.example.villagegreen.util.JsonReceiver;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -51,10 +53,12 @@ public class MainActivity extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.action_recents:
                         recyclerView.setVisibility(View.GONE);
-//                        Toast.makeText(MainActivity.this, "Recents", Toast.LENGTH_SHORT).show();
+  //                     Toast.makeText(MainActivity.this, "Accueil", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.action_favorites:
-                        recyclerView.setVisibility(View.VISIBLE);
+//                        recyclerView.setVisibility(View.VISIBLE);
+                        Intent intent2 = new Intent(bottomNavigationView.getContext(), CategActivity.class);
+                        startActivity(intent2);
 //                        Toast.makeText(MainActivity.this, "Favorites", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.action_compte:
@@ -71,10 +75,8 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setVisibility(View.GONE);
-
         produitList = new ArrayList<>();
         adapter = new ProduitsAdapter(this, produitList);
-
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));

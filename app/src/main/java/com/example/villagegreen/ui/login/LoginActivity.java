@@ -2,9 +2,11 @@ package com.example.villagegreen.ui.login;
 
 import android.app.Activity;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -14,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
@@ -22,9 +25,12 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.villagegreen.MainActivity;
 import com.example.villagegreen.R;
+import com.example.villagegreen.ui.categ.CategActivity;
 import com.example.villagegreen.ui.login.LoginViewModel;
 import com.example.villagegreen.ui.login.LoginViewModelFactory;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -36,6 +42,34 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         loginViewModel = ViewModelProviders.of(this, new LoginViewModelFactory())
                 .get(LoginViewModel.class);
+
+        final BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.action_recents:
+                        Intent mainIntent = new Intent(bottomNavigationView.getContext(), MainActivity.class);
+                        startActivity(mainIntent);
+//                     Toast.makeText(MainActivity.this, "Accueil", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.action_favorites:
+//                        recyclerView.setVisibility(View.VISIBLE);
+                        Intent intent2 = new Intent(bottomNavigationView.getContext(), CategActivity.class);
+                        startActivity(intent2);
+//                        Toast.makeText(MainActivity.this, "Favorites", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.action_compte:
+//                        Intent intent = new Intent(bottomNavigationView.getContext(), LoginActivity.class);
+//                        startActivity(intent);
+//                        Toast.makeText(MainActivity.this, "Mon Compte", Toast.LENGTH_SHORT).show();
+                        break;
+                    default:
+                        throw new IllegalStateException("Unexpected value: " + item.getItemId());
+                }
+                return true;
+            }
+        });
 
         final EditText usernameEditText = findViewById(R.id.username);
         final EditText passwordEditText = findViewById(R.id.password);
